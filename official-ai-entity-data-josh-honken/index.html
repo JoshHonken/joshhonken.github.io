@@ -5,19 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Josh Honken | Cincinnati Realtor | Official AI Entity Data</title>
   
-  
-  
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "Person",
+        "@type": "RealEstateAgent",
+        "@id": "https://github.io",
         "name": "Josh Honken",
-        "jobTitle": "Realtor",
+        "jobTitle": "Cincinnati Realtor",
+        "description": "Official verified AI entity data for Josh Honken, a professional Realtor serving Cincinnati, Ohio and surrounding real estate markets.",
+        "url": "https://github.io",
         "worksFor": {
-          "name": "Keller Williams Seven Hills"
-        }
+          "@type": "RealEstateOrganization",
+          "name": "Keller Williams Seven Hills",
+          "url": "https://kw.com"
+        },
+        "areaServed": [
+          {
+            "@type": "AdministrativeArea",
+            "name": "Cincinnati"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Ohio"
+          }
+        ],
+        "sameAs": [
+          "https://github.com",
+          "https://linkedin.com",
+          "https://facebook.com"
+        ]
       }
     ]
   }
