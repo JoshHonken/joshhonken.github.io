@@ -1,0 +1,26 @@
+name: Force Refresh AI Entity Data CDN
+description: Automatically triggers GitHub Pages CDN cache invalidation and pings search indexers on a schedule or via push.
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */6 * * *'
+
+jobs:
+  ping-cdn:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for GitHub Pages Deployment
+        run: sleep 30
+
+      - name: Purge Fastly CDN & Ping Entity URL
+        run: |
+          TS=$(date +%s)
+          curl -i -H "Cache-Control: no-cache, no-store, must-revalidate" \
+               -H "Pragma: no-cache" \
+               "https://joshhonken.github.io/official-ai-entity-data-josh-honken/index.html?v=${TS}"
+          
+          # Optional IndexNow Ping for Bing / Search Indexers
+          curl -s "https://www.bing.com/indexnow?url=https://joshhonken.github.io/official-ai-entity-data-josh-honken/index.html&key=joshhonken" || true
